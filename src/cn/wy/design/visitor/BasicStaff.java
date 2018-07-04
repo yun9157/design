@@ -7,12 +7,16 @@ public class BasicStaff extends Staff {
 
     private String job;
 
-    public String setJob(String job) {
+    public String getJob() {
         return job;
     }
 
+    public void setJob(String job) {
+        this.job = job;
+    }
+
     @Override
-    protected String getOtherInfo() {
-        return "工作:" + job;
+    public void accept(VisitorInter visitor) {
+        visitor.visit(this);
     }
 }

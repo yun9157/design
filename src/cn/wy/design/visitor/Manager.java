@@ -10,8 +10,13 @@ public class Manager extends Staff {
     public void setPerformance(String performance) {
         this.performance = performance;
     }
+
+    public String getPerformance() {
+        return performance;
+    }
+
     @Override
-    protected String getOtherInfo() {
-        return "绩效是:" + performance;
+    public void accept(VisitorInter visitor) {
+        visitor.visit(this);
     }
 }

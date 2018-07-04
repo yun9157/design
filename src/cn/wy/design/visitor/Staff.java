@@ -24,9 +24,5 @@ public abstract class Staff {
         this.wage = wage;
     }
 
-    public final void report() {
-        System.out.println("姓名：" + name + "  工资：" + wage + "  " + getOtherInfo());
-    }
-
-    abstract protected String getOtherInfo();
+    public abstract void accept(VisitorInter visitor);
 }
