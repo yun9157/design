@@ -1,6 +1,4 @@
-import cn.wy.design.visitor.BasicStaff;
-import cn.wy.design.visitor.Manager;
-import cn.wy.design.visitor.Staff;
+import cn.wy.design.visitor.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +18,7 @@ public class Main {
         store.setWage(11);
         store.setJob("仓管");
 
+
         Manager manager = new Manager();
         manager.setName("店长贾富贵");
         manager.setWage(100);
@@ -29,6 +28,7 @@ public class Main {
         staffs.add(store);
         staffs.add(manager);
 
-        staffs.forEach(Staff::report);
+        VisitorInter inter=new Visitor();
+        staffs.forEach(staff->staff.accept(inter));
     }
 }
