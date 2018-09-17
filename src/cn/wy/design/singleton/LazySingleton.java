@@ -14,9 +14,8 @@ public class LazySingleton {
     }
 
 
-    public static LazySingleton getInstance() {
+    public static synchronized LazySingleton getInstance() {
         if (instance == null) {
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -41,7 +40,7 @@ class LazyMain {
                 System.out.println("线程 " + threadName + "\t => " + s1.hashCode());
             }
         };
-        for (int i = 0; i <= 1000; i++) {
+        for (int i = 0; i <= 100; i++) {
             new Thread(task, "" + i).start();
         }
     }
