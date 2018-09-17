@@ -2,7 +2,7 @@ package cn.wy.design.singleton;
 
 /**
  * Created by wang.yun on 2018/9/14.
- * 饿汉式
+ * 饿汉单例
  */
 public class HungrySingleton {
 

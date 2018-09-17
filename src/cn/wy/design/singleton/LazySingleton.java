@@ -2,7 +2,7 @@ package cn.wy.design.singleton;
 
 /**
  * Created by wang.yun on 2018/9/14.
- * 懒汉式
+ * 懒汉单例
  */
 public class LazySingleton {
 
