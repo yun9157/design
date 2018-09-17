@@ -18,10 +18,6 @@ public class HungrySingleton {
         return singleton;
     }
 
-}
-
-
-class HungryMain {
 
     public static void main(String args[]) {
         Runnable task = new Runnable() {

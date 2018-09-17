@@ -26,10 +26,7 @@ public class LazySingleton {
         }
         return instance;
     }
-}
 
-
-class LazyMain {
 
     public static void main(String args[]) {
         Runnable task = new Runnable() {

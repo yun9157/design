@@ -1,9 +1,13 @@
 package cn.wy.design.singleton;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by wang.yun on 2018/9/17.
@@ -20,7 +24,7 @@ public class SerializableSingleton implements Serializable {
 
     private static class SingletonInstance {
 
-        final static SerializableSingleton singleton = new SerializableSingleton();
+        private final static SerializableSingleton singleton = new SerializableSingleton();
     }
 
     public static SerializableSingleton getInstance() {
@@ -36,28 +40,21 @@ public class SerializableSingleton implements Serializable {
     public static void main(String args[]) {
         try {
 
-            SerializableSingleton sc1 = SerializableSingleton.getInstance();
-            SerializableSingleton sc2 = SerializableSingleton.getInstance();
-            System.out.println(sc1.equals(sc2)); // sc1
+            // 序列化
+            ObjectOutputStream oos = new ObjectOutputStream(
+                            new FileOutputStream("storageFile"));
+            oos.writeObject(SerializableSingleton.getInstance());
 
-            Class<SerializableSingleton> singletonClass = (Class<SerializableSingleton>) Class
-                            .forName("cn.wy.design.singleton.SerializableSingleton");
+            //反序列化
+            File file = new File("storageFile");
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            SerializableSingleton newInstance = (SerializableSingleton) ois.readObject();
 
-            Constructor<SerializableSingleton> c = singletonClass.getDeclaredConstructor(null);
-            c.setAccessible(true); // 跳过权限检查
-            SerializableSingleton sc3 = c.newInstance();
-            SerializableSingleton sc4 = c.newInstance();
+            System.out.println("是否为同一个对象:" + newInstance.equals(SerializableSingleton.getInstance()));
 
-            System.out.println("是否为同一对象:" + sc3.equals(sc4));
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
     }
