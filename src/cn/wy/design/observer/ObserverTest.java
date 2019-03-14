@@ -2,7 +2,7 @@ package cn.wy.design.observer;
 
 /**
  * Created by wang.yun on 2019/3/13.
- * 朋友圈举例
+ * 观察者模式:朋友圈举例
  * 参考网站：https://my.oschina.net/liebrother/blog/3020463
  */
 public class ObserverTest {
